@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import "../messages.css";
 import "../inbox.css";
 import phoneAppIcon from "../assets/phone-app.jpg";
+// Sample portraits: randomuser.me/api/portraits/men/96.jpg and /women/63.jpg.
+// These placeholders are never assigned to real SMS senders.
 import riverbendAvatar from "../assets/riverbend-contact.jpg";
 import cornerCafeAvatar from "../assets/corner-cafe-contact.jpg";
 import type { FarmState, Order } from "../lib/planning";

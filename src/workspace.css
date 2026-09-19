@@ -1,5 +1,11 @@
+:root:has(.workspace-gate) {
+  background: #fafbf9;
+}
 .workspace-gate {
+  width: 100%;
+  max-width: none;
   min-height: 100dvh;
+  margin: 0;
   display: grid;
   place-items: center;
   padding: 32px 24px;
