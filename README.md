@@ -2,6 +2,8 @@
 
 Harvest Commit helps farms turn customer orders, inventory, field estimates, crew availability, and weather into a daily harvest plan. Review incoming orders, adjust the plan, and send it to the farmer for approval by SMS.
 
+> “Don’t harvest what you can’t sell. Don’t promise what you can’t harvest.”
+
 ## Run locally
 
 You need **Node.js 24**, npm, Git, and access to this private repository.
