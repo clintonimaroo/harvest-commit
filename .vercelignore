@@ -1,0 +1,12 @@
+.env
+.env.*
+.data
+work
+sms-site
+outputs
+test-results
+playwright-report
+*.command
+*.log
+*.tsbuildinfo
+node_modules

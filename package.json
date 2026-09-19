@@ -1,0 +1,37 @@
+{
+  "name": "harvest-commit",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "tsc -b && vite build",
+    "preview": "node --env-file-if-exists=.env --experimental-strip-types server/index.ts",
+    "test": "node --experimental-strip-types --test src/lib/*.test.ts server/*.test.ts",
+    "start": "node --env-file-if-exists=.env --experimental-strip-types server/index.ts",
+    "test:e2e": "playwright test",
+    "typecheck": "tsc -b",
+    "eval:ai": "node --env-file-if-exists=.env --experimental-strip-types scripts/eval-ai.ts"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@hugeicons/core-free-icons": "^4.3.4",
+    "@hugeicons/react": "^1.1.10",
+    "@vercel/functions": "^3.9.8",
+    "express": "^5.2.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "twilio": "^6.1.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "prettier": "^3.9.8",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.0"
+  }
+}

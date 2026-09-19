@@ -1,0 +1,18 @@
+node_modules/
+dist/
+work/
+outputs/
+test-results/
+playwright-report/
+.DS_Store
+*.tsbuildinfo
+*.log
+
+.env*
+!.env.example
+.data/
+.vercel/
+
+# Locally installed agent tooling, not application dependencies.
+.agents/
+skills-lock.json
