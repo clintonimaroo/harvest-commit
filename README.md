@@ -67,13 +67,3 @@ node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"
 ```
 
 Save it privately, add it to `.env`, and use it on the public workspace's sign-in screen. Direct localhost access does not require it.
-
-## Deploy to Vercel
-
-1. Import this repository with the **repository root** as the project directory and select Node.js 24. `vercel.json` supplies the build and API settings.
-2. Connect an Upstash Redis database. Set `KV_REST_API_URL` and `KV_REST_API_TOKEN` if the integration has not supplied them. Hosted plans and messages are stored here.
-3. Add `HARVEST_ADMIN_TOKEN`, your stable HTTPS origin as `PUBLIC_BASE_URL`, and the integration variables above in Vercel's environment settings. Local `.env` files are not uploaded.
-4. Deploy and sign in with your workspace key. A new database starts with sample data; local farm data is not imported automatically.
-5. Point Twilio's incoming webhook to the deployed origin plus `/webhooks/twilio/inbound`. Send a test text and check the inbox. After campaign approval, test sending a plan and replying with its approval code.
-
-Redeploy after changing Vercel environment variables.
