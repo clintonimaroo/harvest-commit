@@ -1,14 +1,14 @@
 # Harvest Commit
 
-Harvest Commit helps farms turn customer orders, inventory, field estimates, crew availability, and weather into a daily harvest plan. Review incoming orders, adjust the plan, and send it to the farmer for approval by SMS.
+Harvest Commit turns farm orders, inventory, field estimates, crew availability, and weather into a daily harvest plan. Review orders and send the plan to the farmer for approval by SMS.
 
 > “Don’t harvest what you can’t sell. Don’t promise what you can’t harvest.”
 
 **Placed first** at the [Morgan TechFest Tech Case Pitch Competition 2026](https://www.morgantechfest.com/tech-case.html).
 
-## Run locally
+## Quick start
 
-You need **Node.js 24**, npm, Git, and access to this private repository.
+Requires **Node.js 24**, npm, Git, and repository access.
 
 ```sh
 git clone https://github.com/clintonimaroo/harvest-commit.git
@@ -19,51 +19,14 @@ npm run build
 npm start
 ```
 
-Open [localhost:4173](http://localhost:4173). Keep the server running; it serves both the app and its API. The sample farm and demo phone work without API keys. Local farm data stays in your browser, and SMS records are saved in `.data/`.
+Open [localhost:4173](http://localhost:4173). The sample farm and demo phone work without API keys. For development, use `npm run dev` and open [localhost:5173](http://localhost:5173).
 
-For development, run `npm run dev` instead: the app opens on port **5173** and the API runs on **4174**. Check changes with `npm test` and `npm run build`.
+## Optional setup
 
-## Configure integrations
+Edit `.env` using [.env.example](.env.example), then restart the server. Never commit credentials.
 
-Edit `.env`, then restart the server. Keep credentials out of Git and never give them a `VITE_` prefix.
-
-### Weather
-
-Open-Meteo is already connected for this demo and defaults to Baltimore. No key is needed. Change the location directly on the weather card.
-
-### AI extraction
-
-Set `OPENAI_API_KEY` and `OPENAI_MODEL` in `.env`. The template uses `gpt-4.1`; your API account must have access to that model. Open a message in **Order inbox** and choose **Extract with AI**. Review the details before confirming. Without a key, the app uses its local parser.
-
-### Live SMS
-
-Create a Twilio Messaging Service, attach your SMS-capable number and registered A2P campaign, and fill in:
-
-| Variable | What to enter |
-| --- | --- |
-| `TWILIO_ACCOUNT_SID` | Twilio Account SID (`AC…`). |
-| `TWILIO_AUTH_TOKEN` | Twilio Account Auth Token. |
-| `TWILIO_PHONE_NUMBER` | Twilio sender number in `+countrycode` format. |
-| `TWILIO_MESSAGING_SERVICE_SID` | Messaging Service SID (`MG…`). |
-| `TWILIO_A2P_CAMPAIGN_SID` | Campaign SID (`QE…`). |
-| `FARMER_PHONE_NUMBER` | Consenting recipient's number in `+countrycode` format. |
-| `PUBLIC_BASE_URL` | Public HTTPS origin, with no path. |
-| `SMS_ENABLED` | `true` to enable live mode. |
-
-For local testing, install and authenticate ngrok, then run `ngrok http 4173` alongside `npm start`. Set `PUBLIC_BASE_URL` to the tunnel's HTTPS origin and restart the app.
-
-Set the Twilio number's incoming-message webhook to **POST** at `PUBLIC_BASE_URL` followed by `/webhooks/twilio/inbound`. If your Messaging Service overrides number-level routing, configure its webhook instead. Delivery callbacks are set automatically. Update both the URL in `.env` and Twilio when the tunnel changes.
-
-Enable **Advanced Opt-Out** on the Messaging Service for START, STOP, and HELP. The SMS invitation, privacy policy, and terms are in `sms-site/`; update them for your sender and publish that folder separately for your campaign.
-
-Incoming texts appear in **Order inbox**. Send plans from **Farmer SMS → Live SMS**. The app permits outbound messages only when Twilio reports the campaign as `VERIFIED` and the sending confirmation is checked.
-
-### Workspace access
-
-Hosted and tunnel access require `HARVEST_ADMIN_TOKEN`. Generate a random key:
-
-```sh
-node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"
-```
-
-Save it privately, add it to `.env`, and use it on the public workspace's sign-in screen. Direct localhost access does not require it.
+- **Weather:** Already connected through Open-Meteo, with Baltimore as the default.
+- **AI:** Set `OPENAI_API_KEY` and `OPENAI_MODEL` to enable order extraction.
+- **SMS:** Fill in the Twilio credentials, service/campaign IDs, sender and farmer numbers, and `PUBLIC_BASE_URL`. Set `SMS_ENABLED=true`; outbound sending requires a verified campaign.
+- **Incoming texts:** Set Twilio's webhook to **POST** at `<PUBLIC_BASE_URL>/webhooks/twilio/inbound`. For local testing, use `ngrok http 4173` and set its HTTPS origin as `PUBLIC_BASE_URL`.
+- **Remote access:** Set `HARVEST_ADMIN_TOKEN` to a random key of at least 32 characters and use it to sign in.
