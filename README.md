@@ -4,6 +4,8 @@ Harvest Commit helps farms turn customer orders, inventory, field estimates, cre
 
 > “Don’t harvest what you can’t sell. Don’t promise what you can’t harvest.”
 
+**Placed first** at the [Morgan TechFest Tech Case Pitch Competition 2026](https://www.morgantechfest.com/tech-case.html).
+
 ## Run locally
 
 You need **Node.js 24**, npm, Git, and access to this private repository.
